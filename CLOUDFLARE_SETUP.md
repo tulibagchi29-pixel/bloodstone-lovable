@@ -9,7 +9,7 @@ Configuration file for Cloudflare Workers deployment:
 - ✓ Worker name: `bloodstone-lovable`
 - ✓ Custom domain routes for `shamitbagchi.com` and `www.shamitbagchi.com`
 - ✓ Build command configured to run `npm run build`
-- ✓ Simplified config that works with Nitro's auto-generated config
+- ✓ Compatible with Free plan (no paid-only features)
 
 ### 2. **DEPLOYMENT.md** (Created)
 Complete deployment guide with:
@@ -24,7 +24,6 @@ Pre-deployment checklist covering:
 - Cloudflare Dashboard setup
 - First deployment steps
 - Post-deployment verification
-- Continuous deployment setup (GitHub Actions)
 
 ## Current Build Status
 
@@ -35,7 +34,7 @@ Build artifacts are generated in `.output/`:
 - `.output/public/` - Static assets
 - `.output/server/wrangler.json` - Generated Wrangler configuration
 
-## Quick Start to Deploy
+## Quick Start to Deploy (Manual Cloudflare)
 
 ### 1. Prerequisites
 ```bash
@@ -49,16 +48,22 @@ wrangler --version
 ### 2. Authenticate with Cloudflare
 ```bash
 wrangler login
-# This opens a browser to authenticate
+# This opens a browser to authenticate with your Cloudflare account
 ```
 
-### 3. Deploy
+### 3. Build the Project
 ```bash
-# Deploy to production (uses .output/server/wrangler.json)
+npm run build
+# Generates .output/server/index.mjs and .output/server/wrangler.json
+```
+
+### 4. Deploy to Cloudflare
+```bash
+# Deploy using the auto-generated config
 wrangler deploy
 ```
 
-### 4. Verify
+### 5. Verify Deployment
 ```bash
 # View logs
 wrangler tail
@@ -96,7 +101,16 @@ Before deploying, you **must** configure routes in Cloudflare Dashboard:
 1. `npm run build` → Vite builds client and SSR
 2. Nitro builds the Cloudflare Worker using preset `cloudflare_module`
 3. **Automatically generates** `.output/server/wrangler.json` from `wrangler.toml`
-4. During deployment, Wrangler uses the generated config from `.output/server/wrangler.json`
+4. `wrangler deploy` uses the generated config from `.output/server/wrangler.json`
+
+## Free Plan Limitations
+
+Your current setup is compatible with the **Free Cloudflare Workers plan**:
+- ✅ Unlimited requests
+- ✅ 30 concurrent connections
+- ✅ Custom domains (shamitbagchi.com)
+- ❌ CPU limits (removed from config)
+- ❌ Durable Objects, KV storage (premium features)
 
 ## Environment Variables (If Needed)
 
@@ -133,17 +147,6 @@ Verify with:
 ```bash
 nslookup -type=NS shamitbagchi.com
 ```
-
-## Continuous Deployment with Lovable
-
-Since this project is connected to [Lovable](https://lovable.dev):
-
-1. Every push to `main` automatically triggers a build
-2. Lovable's build system runs `npm run build` and then `npx wrangler deploy`
-3. Your site automatically deploys to Cloudflare Workers
-4. Changes made in Lovable editor are synced to this repository
-
-**No additional CI/CD setup needed** — Lovable handles deployments automatically!
 
 ## Key URLs After Deployment
 
@@ -184,6 +187,9 @@ wrangler deploy
 3. Wait 5-15 minutes for DNS to propagate
 4. Clear browser cache and try again
 
+**"CPU limits are not supported for the Free plan"**
+This has been fixed - CPU limits were removed from wrangler.toml.
+
 **"Warning: Wrangler config main is overridden"**
 This is expected! Nitro automatically generates the correct config. Just deploy normally.
 
@@ -193,13 +199,35 @@ This is expected! Nitro automatically generates the correct config. Just deploy 
 - 🔧 [Cloudflare Workers Guide](https://developers.cloudflare.com/workers/)
 - 🚀 [Nitro Cloudflare Deployment](https://nitro.unjs.io/deploy/providers/cloudflare)
 
+## Deployment Workflow
+
+For future deployments:
+
+```bash
+# 1. Make changes to code
+# 2. Commit to git
+git add .
+git commit -m "Your changes"
+git push origin main
+
+# 3. Build locally
+npm run build
+
+# 4. Deploy to Cloudflare
+wrangler deploy
+
+# 5. Verify
+wrangler tail
+open https://shamitbagchi.com/
+```
+
 ## Next Steps
 
 1. ✅ Review this summary
 2. ✅ Check the build was successful (already done)
 3. 📋 Follow the checklist in `DEPLOYMENT_CHECKLIST.md`
 4. 🔑 Set up Cloudflare Dashboard routes
-5. 🚀 Push to main branch (Lovable will auto-deploy)
+5. 🚀 Run `wrangler login` then `wrangler deploy`
 6. ✨ Verify your site is live at `shamitbagchi.com`
 
 ## Files in This Repository
@@ -216,6 +244,6 @@ bloodstone-lovable/
 
 ---
 
-**Status**: ✅ Ready for deployment to `shamitbagchi.com`
+**Status**: ✅ Ready for manual deployment to `shamitbagchi.com`
 
 Any questions? Check the documentation files or the links above.
