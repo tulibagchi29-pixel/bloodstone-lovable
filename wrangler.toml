@@ -15,7 +15,3 @@ zone_name = "shamitbagchi.com"
 [build]
 command = "npm run build"
 cwd = "./"
-
-# Limits (optional)
-[limits]
-cpu_ms = 50000
