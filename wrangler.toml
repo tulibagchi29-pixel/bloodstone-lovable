@@ -1,0 +1,53 @@
+name = "bloodstone-lovable"
+type = "service"
+main = ".output/server/index.mjs"
+compatibility_date = "2025-12-03"
+
+# Routes configuration for custom domain
+[[routes]]
+pattern = "shamitbagchi.com/*"
+zone_name = "shamitbagchi.com"
+
+[[routes]]
+pattern = "www.shamitbagchi.com/*"
+zone_name = "shamitbagchi.com"
+
+# Observability
+[observability]
+enabled = false
+
+# Analytics Engine
+[analytics]
+enabled = false
+
+# Build configuration (managed by Lovable's vite-tanstack-config)
+[build]
+command = "npm run build"
+cwd = "./"
+watch_paths = ["src/**/*.ts", "src/**/*.tsx"]
+
+[build.upload]
+format = "modules"
+main = ".output/server/index.mjs"
+
+# Environment variables (optional - add as needed)
+[env.production]
+name = "bloodstone-lovable-prod"
+routes = [
+  { pattern = "shamitbagchi.com/*", zone_name = "shamitbagchi.com" },
+  { pattern = "www.shamitbagchi.com/*", zone_name = "shamitbagchi.com" }
+]
+
+[env.staging]
+name = "bloodstone-lovable-staging"
+routes = [
+  { pattern = "staging.shamitbagchi.com/*", zone_name = "shamitbagchi.com" }
+]
+
+# Limits (optional)
+[limits]
+cpu_ms = 50000
+
+# Workers Tail (optional - for debugging)
+# [tail]
+# enabled = true
