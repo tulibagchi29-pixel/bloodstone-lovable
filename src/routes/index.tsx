@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 
-import coverAsset from "../assets/bloodstone-cover-new.webp.asset.json";
+import coverImage from "../assets/bloodstone-cover-new.jpg";
 import textureImage from "../assets/bloodstone-texture.jpg";
 
 export const Route = createFileRoute("/")({
@@ -211,7 +211,7 @@ function Index() {
             >
               <div className="absolute -inset-6 rounded-xl bg-gradient-to-br from-gold/25 via-sage/10 to-transparent blur-3xl" aria-hidden="true" />
               <img
-                src={coverAsset.url}
+                src={coverImage}
                 alt="Bloodstone book cover by Shamit Bagchi, art by Charbak Dipta"
                 className="relative max-h-[70vh] w-auto rounded-md shadow-2xl shadow-black/50"
               />
