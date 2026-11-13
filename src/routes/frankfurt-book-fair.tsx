@@ -46,6 +46,7 @@ const photographs = [
 
 const SHARE_URL = "https://bloodstone.lovable.app/frankfurt-book-fair";
 const SHARE_TEXT = "Bloodstone at Frankfurt Book Fair 2026 — photos and reflections from Shamit Bagchi’s launch of Bloodstone: A Novel.";
+const assetUrl = (url: string) => new URL(url, "https://bloodstone.lovable.app").href;
 
 function ShareButtons() {
   const [copied, setCopied] = useState(false);
@@ -139,7 +140,7 @@ function FrankfurtBookFairPage() {
         </header>
 
         <figure>
-          <img src={coverPortrait.url} alt="Shamit Bagchi holding Bloodstone: A Novel at the Hubhawks stand at Frankfurt Book Fair 2026" width={1366} height={768} fetchPriority="high" className="h-auto w-full rounded-md" />
+          <img src={assetUrl(coverPortrait.url)} alt="Shamit Bagchi holding Bloodstone: A Novel at the Hubhawks stand at Frankfurt Book Fair 2026" width={1366} height={768} fetchPriority="high" className="h-auto w-full rounded-md" />
           <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">Bloodstone: A Novel at Frankfurt Book Fair 2026 — a proud moment with the book in hand.</figcaption>
         </figure>
 
@@ -179,7 +180,7 @@ function FrankfurtBookFairPage() {
           <div className="grid items-start gap-x-8 gap-y-12 md:grid-cols-2">
             {photographs.map((photo, index) => (
               <figure key={photo.image.asset_id} className={index === 7 ? "md:col-span-2 md:mx-auto md:w-1/2" : ""}>
-                <img src={photo.image.url} alt={photo.alt} loading="lazy" className="h-auto w-full rounded-md" />
+                <img src={assetUrl(photo.image.url)} alt={photo.alt} loading="lazy" className="h-auto w-full rounded-md" />
                 <figcaption className="mt-5">
                   <h3 className="font-heading text-xl leading-snug tracking-normal text-cream">{photo.title}</h3>
                   <p className="mt-2 text-base leading-relaxed text-muted-foreground">{photo.caption}</p>
