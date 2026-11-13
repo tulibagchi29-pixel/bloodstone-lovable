@@ -6,15 +6,15 @@ import { pageSeo } from "@/lib/page-seo";
 import { PageFallback } from "@/components/page-fallback";
 
 
-import coverPortrait from "@/assets/frankfurt-cover-portrait.jpeg";
-import signedBook from "@/assets/frankfurt-signed-book.jpeg";
-import signingCloseup from "@/assets/frankfurt-signing-closeup.jpeg";
-import signingWide from "@/assets/frankfurt-signing-wide.jpeg";
-import authorPortrait from "@/assets/frankfurt-author-portrait.jpeg";
-import kevinMissal from "@/assets/frankfurt-kevin-missal-portrait.jpeg";
-import friendYogesh from "@/assets/frankfurt-friend-yogesh.jpeg";
-import coverDetail from "@/assets/frankfurt-cover-detail.jpeg";
-import shelfDisplay from "@/assets/frankfurt-shelf-display.jpeg";
+import coverPortrait from "../assets/frankfurt-cover-portrait.jpeg";
+import signedBook from "../assets/frankfurt-signed-book.jpeg";
+import signingCloseup from "../assets/frankfurt-signing-closeup.jpeg";
+import signingWide from "../assets/frankfurt-signing-wide.jpeg";
+import authorPortrait from "../assets/frankfurt-author-portrait.jpeg";
+import kevinMissal from "../assets/frankfurt-kevin-missal-portrait.jpeg";
+import friendYogesh from "../assets/frankfurt-friend-yogesh.jpeg";
+import coverDetail from "../assets/frankfurt-cover-detail.jpeg";
+import shelfDisplay from "../assets/frankfurt-shelf-display.jpeg";
 
 export const Route = createFileRoute("/frankfurt-book-fair")({
   head: () => ({
