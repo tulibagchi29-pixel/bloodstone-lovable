@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { pageSeo } from "@/lib/page-seo";
 import { PageFallback } from "@/components/page-fallback";
 
-import collageAsset from "../assets/bloodstone-treasure-collage.jpeg.asset.json";
+import collageAsset from "../assets/bloodstone-treasure-collage.jpeg";
 import coverAsset from "../assets/bloodstone-cover-new.webp.asset.json";
 
 export const Route = createFileRoute("/treasure-hunt")({
@@ -231,7 +231,7 @@ function TreasureHunt() {
 
           <figure className="mt-10 rounded-2xl border border-gold/20 bg-earth-card p-3 lg:p-5">
             <img
-              src={collageAsset.url}
+              src={collageAsset}
               alt="Collage of color artwork by Charbak Dipta from Bloodstone — the kingdom of Kamarupa, Kali and the reader, a snowy station, a sage's mind, the gathering, and Lakshmi on the lotus"
               className="w-full rounded-xl"
               loading="lazy"
@@ -375,7 +375,7 @@ function TreasureHunt() {
                   <div className="mt-8 flex flex-col items-center gap-8 lg:flex-row lg:items-start">
                     <div className="flex w-full max-w-md gap-4 lg:w-1/2">
                       <img
-                        src={collageAsset.url}
+                        src={collageAsset}
                         alt="Collage of color artwork by Charbak Dipta from Bloodstone"
                         className="w-1/2 rounded-lg border border-gold/25 object-cover"
                       />
