@@ -116,7 +116,7 @@ function RankingPage() {
           <figure className="mx-auto mb-10 max-w-xl">
             <a href="https://www.amazon.in/dp/B0HG1MG8V4" target="_blank" rel="noopener noreferrer">
               <img
-                src={rankingAnnouncement.url}
+                src={new URL(rankingAnnouncement.url, "https://bloodstone.lovable.app").href}
                 alt="Bloodstone: A Novel by Shamit Bagchi — ranked #13 in Amazon India Hard Science Fiction Bestsellers, alongside Andy Weir, Liu Cixin and Isaac Asimov."
                 width={768}
                 height={1152}
